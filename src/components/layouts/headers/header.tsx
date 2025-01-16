@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Header = () => {
@@ -11,22 +12,22 @@ const Header = () => {
 
       {/* Navigation Links */}
       <nav className="flex space-x-4">
-        <a href="/" className="hover:text-gray-300">
+        <Link href="/" className="hover:text-gray-300">
           Bạch Nguyệt Phạn Tình
-        </a>
-        <a href="/" className="hover:text-gray-300">
+        </Link>
+        <Link href="/" className="hover:text-gray-300">
           Đề xuất
-        </a>
+        </Link>
         <div className="relative group">
           <button className="hover:text-gray-300">Khác</button>
           {/* Dropdown */}
           <div className="absolute left-0 hidden group-hover:block bg-white text-black mt-2 rounded shadow-lg">
-            <a href="/" className="block px-4 py-2 hover:bg-gray-200">
+            <Link href="/" className="block px-4 py-2 hover:bg-gray-200">
               Tùy chọn 1
-            </a>
-            <a href="/" className="block px-4 py-2 hover:bg-gray-200">
+            </Link>
+            <Link href="/" className="block px-4 py-2 hover:bg-gray-200">
               Tùy chọn 2
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -43,15 +44,15 @@ const Header = () => {
 
       {/* Action Buttons */}
       <div className="flex items-center space-x-4">
-        <a href="/" className="hover:text-gray-300">
+        <Link href="/" className="hover:text-gray-300">
           📖 Lịch sử xem
-        </a>
-        <a href="/" className="hover:text-gray-300">
+        </Link>
+        <Link href="/" className="hover:text-gray-300">
           🌐 Ngôn ngữ
-        </a>
-        <a href="/" className="hover:text-gray-300">
+        </Link>
+        <Link href="/" className="hover:text-gray-300">
           👤 Của tôi
-        </a>
+        </Link>
         <button className="bg-gray-800 px-2 py-1 rounded text-white hover:bg-gray-700">
           📱 APP
         </button>

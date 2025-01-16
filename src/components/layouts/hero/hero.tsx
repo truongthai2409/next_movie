@@ -3,17 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, Play, BookmarkPlus } from "lucide-react";
 import type { HomeMovie, MovieResponse } from "@/types";
-import { getApiUrl, getMovieDetailUrl } from "@/utils";
-import { config } from "@/config";
+import { API_LIST, getApiUrl, getMovieDetailUrl } from "@/utils";
+import Image from "next/image";
 
 interface MovieDetail {
   movie: HomeMovie;
-  episodes: any[]; // Add more specific types if needed
+  episodes: [];
 }
 
 const fetchMovies = async (): Promise<MovieDetail[]> => {
   const response = await fetch(
-    getApiUrl(`${config.api.version}/phim-moi-cap-nhat?page=1`)
+    getApiUrl(`${API_LIST}/phim-moi-cap-nhat?page=1`)
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -21,10 +21,7 @@ const fetchMovies = async (): Promise<MovieDetail[]> => {
   const data: MovieResponse = await response.json();
   const itemsData = await Promise.all(
     data.items.slice(10, 15).map(async (item) => {
-      const detailResponse = await fetch(
-        // `https://ophim1.com/phim/${item.slug}`
-        getMovieDetailUrl(item.slug)
-      );
+      const detailResponse = await fetch(getMovieDetailUrl(item.slug));
       const detailData: MovieDetail = await detailResponse.json();
       return detailData;
     })
@@ -47,7 +44,7 @@ const HeroSlider = () => {
 
     const timer = setInterval(() => {
       handleSlideChange((prev) => (prev + 1) % Math.min(data.length, 5));
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, [data?.length]);
@@ -57,12 +54,12 @@ const HeroSlider = () => {
     setTimeout(() => {
       setCurrentSlide(getNextSlide);
       setIsChanging(false);
-    }, 3000);
+    }, 1000);
   };
 
   if (isLoading) {
     return (
-      <div className="h-[600px] w-full flex items-center justify-center bg-gray-900">
+      <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
         <div className="text-white text-xl">Loading...</div>
       </div>
     );
@@ -70,7 +67,7 @@ const HeroSlider = () => {
 
   if (error) {
     return (
-      <div className="h-[600px] w-full flex items-center justify-center bg-gray-900">
+      <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
         <div className="text-white text-xl">Error loading movies</div>
       </div>
     );
@@ -89,10 +86,10 @@ const HeroSlider = () => {
   const goToSlide = (index: number) => {
     handleSlideChange(() => index);
   };
-  console.log(data);
+  // console.log(data);
 
   return (
-    <div className="relative w-full overflow-hidden bg-black">
+    <div className="relative w-full overflow-hidden">
       {/* Slides container */}
       <div className="relative h-[250px] md:h-[600px] w-full">
         {data.map((movieData, index) => (
@@ -101,14 +98,17 @@ const HeroSlider = () => {
             className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out
               ${currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}
           >
-            <img
+            <Image
               src={movieData.movie.poster_url || movieData.movie.thumb_url}
               alt={movieData.movie.name}
+              fill
               className={`w-full h-full object-cover transition-transform duration-700 ease-out scale-${
                 isChanging ? "105" : "100"
               }`}
             />
+
             {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-transparent to-transparent blur-lg -bottom-4"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
 
             {/* Content */}

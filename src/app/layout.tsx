@@ -15,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Movie Next App",
-  description: "Movie by create next app",
+  title: "NEXT iMoVie",
+  description:
+    "NEXT iMoVie - Trang web xem phim trực tuyến miễn phí chất lượng cao với giao diện trực quan, tốc độ tải trang nhanh, cùng kho phim với hơn 10.000+ phim mới, phim hay, luôn cập nhật phim nhanh, hứa hẹn sẽ đem lại phút giây giải trí tuyệt vời cho bạn.",
 };
 
 export default function RootLayout({

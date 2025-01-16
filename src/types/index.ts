@@ -5,7 +5,6 @@ export interface Tmdb {
   vote_average: number;
   vote_count: number;
 }
-
 export interface HomeMovie {
   tmdb: Tmdb;
   _id: string;
@@ -47,3 +46,23 @@ export interface MovieResponse {
     currentPage: number;
   };
 }
+
+
+export interface CardProps {
+  _id: number;
+  name?: string;
+  origin_name?: string;
+  poster_url?: string;
+  thumb_url?: string;
+  slug?: string;
+  subtitle?: string;
+  tag?: string;
+  episodeInfo?: string;
+  episode_current: string;
+  sub_docquyen: string;
+  quality: string;
+}
+// export interface CarouselProps {
+//   title?: string;
+//   data?: CardProps[];
+// }
