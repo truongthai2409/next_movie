@@ -1,10 +1,7 @@
 "use client";
 import Carousel from "@/components/ui/carousel/carousel";
 import { useFetchData } from "@/hooks";
-import {
-  extractItems,
-  getVersionEndPointUrl,
-} from "@/utils";
+import { extractItems, getVersionEndPointUrl } from "@/utils";
 import React from "react";
 
 const MovieList = () => {
@@ -14,7 +11,6 @@ const MovieList = () => {
   );
   const { data: phimle } = useFetchData(
     "phimle",
-    // v1/api
     getVersionEndPointUrl("danh-sach/phim-le")
   );
   const { data: phimbo, isLoading: loadingPhimbo } = useFetchData(

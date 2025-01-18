@@ -1,4 +1,5 @@
 import { config } from "@/config";
+// import { GetServerSideProps } from "next";
 
 export const BASEURL = config.api.baseUrl;
 export const MOVIE_END_POINT = config.api.movieEndpoint;
@@ -27,3 +28,29 @@ export const extractItems = (jsonData: JSON) => {
     return [];
   }
 };
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   try {
+//     const res = await fetch('https://ophim1.com/v1/api/phim/ngoi-nha-bi-mat');
+//     const data = await res.json();
+
+//     return {
+//       props: {
+//         data: {
+//           status: data.status,
+//           message: data.message,
+//           movie: data.movie,
+//           episodes: data.episodes
+//         }
+//       }
+//     };
+//   } catch (error) {
+//     return {
+//       props: {
+//         data: null,
+//         error: 'Failed to fetch movie data'
+//       }
+//     };
+//   }
+// }
+// getServerSideProps()

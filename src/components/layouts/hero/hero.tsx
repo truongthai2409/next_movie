@@ -86,7 +86,6 @@ const HeroSlider = () => {
   const goToSlide = (index: number) => {
     handleSlideChange(() => index);
   };
-  // console.log(data);
 
   return (
     <div className="relative w-full overflow-hidden">
@@ -98,6 +97,7 @@ const HeroSlider = () => {
             className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ease-in-out
               ${currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"}`}
           >
+            
             <Image
               src={movieData.movie.poster_url || movieData.movie.thumb_url}
               alt={movieData.movie.name}
@@ -126,6 +126,7 @@ const HeroSlider = () => {
                   <h1 className="text-2xl md:text-5xl font-bold">
                     {movieData.movie.name}
                   </h1>
+                  {/* <h1>{movieData.movie.poster_url}</h1> */}
                   <h2 className="text-lg md:text-2xl opacity-80">
                     {movieData.movie.origin_name}
                   </h2>
@@ -194,7 +195,7 @@ const HeroSlider = () => {
                     <span>Play Now</span>
                   </button>
                   <button className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
-                    <BookmarkPlus className="w-5 h-5" />
+                    <BookmarkPlus className="w-6 h-6" />
                   </button>
                 </div>
               </div>

@@ -27,6 +27,8 @@ export interface HomeMovie {
   lang: string;
   year: number;
   view: number;
+  actor: string[];
+  director: string[];
   category: [
     {
       name: string;
@@ -47,7 +49,6 @@ export interface MovieResponse {
   };
 }
 
-
 export interface CardProps {
   _id: number;
   name?: string;
@@ -62,7 +63,3 @@ export interface CardProps {
   sub_docquyen: string;
   quality: string;
 }
-// export interface CarouselProps {
-//   title?: string;
-//   data?: CardProps[];
-// }
