@@ -1,24 +1,20 @@
 // "use client";
 import React from "react";
 import Image from "next/image";
-import { CardProps } from "@/types";
+import { Movie } from "@/types";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
 
 interface ItemCardProps {
-  card: CardProps;
+  card: Movie;
 }
 
 const Card: React.FC<ItemCardProps> = ({ card }) => {
-  // const router = useRouter();
-
   const {
     thumb_url,
     origin_name,
     episode_current,
     sub_docquyen,
     quality,
-    // slug,
   } = card;
 
   return (
@@ -26,7 +22,6 @@ const Card: React.FC<ItemCardProps> = ({ card }) => {
       className="relative flex-none w-40 md:w-[180px] mx-2 md:hover:scale-110 hover:cursor-pointer hover:transition-all"
       role="button"
       tabIndex={0}
-      // onClick={handleClick}
     >
       <Link href={`/details/${card.slug}`}>
         <div className="relative h-64 rounded-lg overflow-hidden group">

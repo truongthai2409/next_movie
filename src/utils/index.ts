@@ -1,5 +1,5 @@
 import { config } from "@/config";
-// import { GetServerSideProps } from "next";
+import { Movie, MovieDetail, MovieListResponse, MoviesData } from "@/types";
 
 export const BASEURL = config.api.baseUrl;
 export const MOVIE_END_POINT = config.api.movieEndpoint;
@@ -29,28 +29,74 @@ export const extractItems = (jsonData: JSON) => {
   }
 };
 
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   try {
-//     const res = await fetch('https://ophim1.com/v1/api/phim/ngoi-nha-bi-mat');
-//     const data = await res.json();
+export async function fetchMovieData(
+  category: string,
+  endpoint: string
+): Promise<MovieListResponse> {
+  const response = await fetch(getVersionEndPointUrl(endpoint), {
+    next: { revalidate: 3600 },
+  });
 
-//     return {
-//       props: {
-//         data: {
-//           status: data.status,
-//           message: data.message,
-//           movie: data.movie,
-//           episodes: data.episodes
-//         }
-//       }
-//     };
-//   } catch (error) {
-//     return {
-//       props: {
-//         data: null,
-//         error: 'Failed to fetch movie data'
-//       }
-//     };
-//   }
-// }
-// getServerSideProps()
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${category} data`);
+  }
+  const data = await response.json();
+
+  // Only return necessary data
+  return {
+    items: data.data.items.map((item: Movie) => ({
+      _id: item._id,
+      name: item.name,
+      slug: item.slug,
+      origin_name: item.origin_name,
+      poster_url: item.poster_url,
+      thumb_url: item.thumb_url,
+      year: item.year,
+      quality: item.quality,
+      lang: item.lang,
+      episode_current: item.episode_current,
+      tmdb: {
+        type: item.tmdb?.type,
+        vote_average: item.tmdb?.vote_average,
+      },
+    })),
+  };
+}
+
+export async function fetchAllMovieData(): Promise<MoviesData> {
+  const categories = [
+    { key: "phimmoi", endpoint: "danh-sach/phim-moi" },
+    { key: "phimle", endpoint: "danh-sach/phim-le" },
+    { key: "phimbo", endpoint: "danh-sach/phim-bo" },
+    { key: "tvshow", endpoint: "danh-sach/tv-shows" },
+    { key: "hoathinh", endpoint: "danh-sach/hoat-hinh" },
+    { key: "theloai", endpoint: "danh-sach/hanh-dong" },
+    { key: "quocgia", endpoint: "quoc-gia/han-quoc" },
+  ] as const;
+
+  const results = await Promise.all(
+    categories.map(async ({ key, endpoint }) => {
+      const data = await fetchMovieData(key, endpoint);
+      return { key, data };
+    })
+  );
+
+  return results.reduce((acc, { key, data }) => {
+    acc[key] = data;
+    return acc;
+  }, {} as MoviesData);
+}
+
+export async function fetchMovieDetails(slug: string): Promise<MovieDetail> {
+  // console.log(getVersionEndPointUrl(`phim/${slug}`))
+  const response = await fetch(getVersionEndPointUrl(`phim/${slug}`), {
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movie details for ${slug}`);
+  }
+
+  const data = await response.json();
+  return data;
+}

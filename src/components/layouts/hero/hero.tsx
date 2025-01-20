@@ -2,13 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, Play, BookmarkPlus } from "lucide-react";
-import type { HomeMovie, MovieResponse } from "@/types";
+import type { Movie, MovieResponse } from "@/types";
 import { API_LIST, getApiUrl, getMovieDetailUrl } from "@/utils";
 import Image from "next/image";
 
 interface MovieDetail {
-  movie: HomeMovie;
-  episodes: [];
+  movie: Movie;
 }
 
 const fetchMovies = async (): Promise<MovieDetail[]> => {

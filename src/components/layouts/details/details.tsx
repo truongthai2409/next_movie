@@ -1,36 +1,15 @@
-"use cliet";
 import React from "react";
-import { useFetchData } from "@/hooks";
-import { getVersionEndPointUrl } from "@/utils";
-import { HomeMovie } from "@/types";
 import Image from "next/image";
-import ContentDisplay from "@/components/ui/content/content";
-import YouTubeVideo from "@/components/ui/youtube/youtube";
 import { BookmarkPlus, Play, Share } from "lucide-react";
+import { DetailsPageProps, Movie } from "@/types";
+import YouTubeVideo from "@/components/ui/trailer/youtube";
+import VideoPlayerLayout from "@/components/ui/video/video";
+import ContentDisplay from "@/components/ui/content/content";
 
-const DetailsPage = ({ slug }: { slug: string }) => {
-  const { data, isLoading, isError, error } = useFetchData(
-    slug,
-    getVersionEndPointUrl(`phim/${slug}`)
-  );
-  if (isLoading) {
-    return (
-      <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
-        <div className="text-white text-xl">Loading...</div>
-      </div>
-    );
-  }
 
-  if (isError) {
-    return (
-      <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
-        <div className="text-white text-xl">
-          <div>Error: {(error as Error).message}</div>
-        </div>
-      </div>
-    );
-  }
-  const items: HomeMovie = data?.data?.item;
+const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
+  console.log(initialData)
+  const items: Movie = initialData?.data?.item;
 
   return (
     <div>
@@ -60,7 +39,8 @@ const DetailsPage = ({ slug }: { slug: string }) => {
           <div className="absolute h-full top-0 left-0 inset-10 bg-gradient-to-r from-black/100 to-transparent"></div>
           <div className="absolute h-[50%] transform translate-y-full bottom-0 right-0 inset-5 bg-gradient-to-t from-black/100 to-transparent"></div>
         </div>
-        {/* Contents */}
+
+        {/* Rest of your existing content... */}
         <div className="absolute w-1/3 left-[5%] top-1/2 transform -translate-y-1/2 md:space-y-2">
           {/* Name */}
           <div className="relative space-y-4 ">
@@ -87,7 +67,7 @@ const DetailsPage = ({ slug }: { slug: string }) => {
             )}
             {items.episode_current && <span>{items.episode_current}</span>}
           </div>
-
+          
           {/* Categories and Countries */}
           <div className="flex flex-wrap gap-2 items-center">
             {items.country?.map((country, idx) => (
@@ -182,14 +162,14 @@ const DetailsPage = ({ slug }: { slug: string }) => {
           </div>
         </div>
       </div>
+
       <div>
         <div className="w-[90%] h-[1px] mx-auto bg-white mb-4"></div>
         <div className="relative text-gray-200 mx-auto px-[5%]">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold mb-4">Trailer</h2>
+            <h2 className="text-2xl font-bold mb-4">Details</h2>
           </div>
-          {/* Video */}
-          {/* <YouTubeVideo videoId={items.trailer_url} /> */}
+          <VideoPlayerLayout episodesNew={items.episodes} slug={slug} />
         </div>
       </div>
     </div>
@@ -197,4 +177,3 @@ const DetailsPage = ({ slug }: { slug: string }) => {
 };
 
 export default DetailsPage;
-

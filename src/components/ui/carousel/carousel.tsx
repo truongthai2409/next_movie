@@ -3,11 +3,11 @@
 import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Card from "../card/card";
-import { CardProps } from "@/types";
+import { Movie } from "@/types";
 
 interface CarouselProps {
   title?: string;
-  items: CardProps[];
+  items: Movie[];
 }
 
 const Carousel: React.FC<CarouselProps> = ({
