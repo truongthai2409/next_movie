@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Params }) {
   // Fetch both in parallel
   const { slug } = await params;
   const movieDetails = await getCachedMovieDetails(slug);
-  console.log(movieDetails)
+  // console.log(movieDetails)
   const movieData = await fetchAllMovieData();
 
   return (

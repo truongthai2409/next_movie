@@ -35,7 +35,7 @@ export interface MovieDetail {
 }
 export interface DetailsPageProps {
   slug: string;
-  initialData: MovieDetail; 
+  initialData: MovieDetail;
 }
 export interface Movie {
   _id: number;
@@ -77,3 +77,16 @@ export interface MoviesData {
   theloai: MovieListResponse;
   quocgia: MovieListResponse;
 }
+// types.ts
+export interface LoginFormProps {
+  onSubmit: (credentials: LoginCredentials) => void;
+  onSocialLogin: (provider: SocialProvider) => void;
+  isLoading?: boolean;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export type SocialProvider = "facebook" | "google" | "github";

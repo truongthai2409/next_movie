@@ -6,6 +6,7 @@ import Card from './ui/card/card'
 import MovieList from './layouts/movie_list/movide_list'
 import DetailsPage from './layouts/details/details'
 import YouTubeVideo from './ui/trailer/youtube'
+import LoginForm from './form/login/login_form'
 
 
 
@@ -17,5 +18,6 @@ export {
     Card,
     MovieList,
     DetailsPage,
-    YouTubeVideo
+    YouTubeVideo,
+    LoginForm
 }

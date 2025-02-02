@@ -99,7 +99,7 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
       </div>
 
       {/* Right side - Episodes List */}
-      <div className="w-80 bg-gray-800 overflow-y-auto">
+      <div className="w-80 bg-gray-800 overflow-y-auto scrool-bar">
         <div className="p-4">
           {/* <h2 className="text-xl font-bold mb-4">
             {episodesNew[0].server_data[currentEpisodeIndex].name}
