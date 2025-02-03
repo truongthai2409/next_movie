@@ -122,17 +122,16 @@ const HeroSlider = () => {
               <div className="md:space-y-4 md:pl-6">
                 {/* Title and Original Title */}
                 <div className="space-y-2">
-                  <h1 className="text-2xl md:text-5xl font-bold">
+                  <h1 className="text-xl md:text-5xl font-bold">
                     {movieData.movie.name}
                   </h1>
-                  {/* <h1>{movieData.movie.poster_url}</h1> */}
-                  <h2 className="text-lg md:text-2xl opacity-80">
+                  <h2 className="text-base md:text-2xl opacity-80">
                     {movieData.movie.origin_name}
                   </h2>
                 </div>
 
                 {/* Metadata */}
-                <div className="flex items-center space-x-4 text-sm">
+                <div className="flex items-center space-x-4 text-xs md:text-sm ">
                   {movieData.movie.year && <span>{movieData.movie.year}</span>}
                   {movieData.movie.quality && (
                     <span className="px-2 py-1 bg-white/20 rounded">
@@ -152,11 +151,11 @@ const HeroSlider = () => {
                   )}
                 </div>
                 {/* Categories and Countries */}
-                <div className="flex flex-wrap gap-2 items-center">
+                <div className="hidden md:flex flex-wrap gap-2 items-center">
                   {movieData.movie.country?.map((country, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-sm bg-white/30 rounded backdrop-blur-sm"
+                      className="px-3 py-1 text-xs md:text-sm  bg-white/30 rounded backdrop-blur-sm"
                     >
                       {country.name}
                     </span>
@@ -164,7 +163,7 @@ const HeroSlider = () => {
                   {movieData.movie.category?.map((genre, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 text-sm bg-white/20 rounded backdrop-blur-sm"
+                      className="px-3 py-1 text-xs md:text-sm bg-white/20 rounded backdrop-blur-sm"
                     >
                       {genre.name}
                     </span>
@@ -173,14 +172,14 @@ const HeroSlider = () => {
 
                 {/* {Content} */}
                 {movieData.movie.content && (
-                  <p className="text-sm invisible md:visible md:w-[400px] text-gray-300 line-clamp-2">
+                  <p className="text-sm hidden md:flex md:w-[400px] text-gray-300 line-clamp-2">
                     {movieData.movie.content.slice(0, 150)}...
                   </p>
                 )}
 
                 {/* Episode info */}
                 {movieData.movie.episode_current && (
-                  <div className="text-sm">
+                  <div className="text-xs md:text-sm">
                     Status: {movieData.movie.episode_current}
                     <br></br>
                     Total: {movieData.movie.episode_total}
@@ -188,13 +187,13 @@ const HeroSlider = () => {
                 )}
 
                 {/* Action buttons */}
-                <div className="flex space-x-4 pt-4">
-                  <button className="flex items-center space-x-2 px-6 py-3 bg-green-500 rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-105">
-                    <Play className="w-5 h-5" />
+                <div className="flex space-x-4 pt-4 h-12 md:h-16">
+                  <button className="flex items-center text-xs space-x-2 px-2 md:px-6 md:py-3 bg-green-500 rounded-3xl md:rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-105">
+                    <Play className="w-3 h-3 md:w-5 md:h-5" />
                     <span>Play Now</span>
                   </button>
-                  <button className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
-                    <BookmarkPlus className="w-6 h-6" />
+                  <button className="p-2 md:p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+                    <BookmarkPlus className="w-4 h-4 md:w-6 md:h-6" />
                   </button>
                 </div>
               </div>
