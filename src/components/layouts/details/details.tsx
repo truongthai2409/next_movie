@@ -8,12 +8,12 @@ import ContentDisplay from "@/components/ui/content/content";
 
 
 const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
-  console.log(initialData)
+  // console.log(initialData)
   const items: Movie = initialData?.data?.item;
 
   return (
     <div>
-      <div className="relative w-full h-[600px] text-white">
+      <div className="relative w-full h-[250px] md:h-[600px] text-white">
         {/* Image */}
         <div className="absolute top-0 right-0 h-[250px] w-full md:h-[500px] md:w-4/5">
           {items.trailer_url && items.trailer_url.length > 0 ? (
@@ -25,7 +25,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
                   name={items.name}
                 />
               </div>
-              <div className="absolute h-full w-1/2 top-0 -left-1/2 inset-5 bg-gradient-to-l from-black/50 to-transparent"></div>
+              <div className="absolute h-full w-1/2 md:w-1/3 top-0 -left-1/2 inset-5 bg-gradient-to-l from-black/50 to-transparent"></div>
             </>
           ) : (
             <Image
@@ -41,15 +41,16 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
         </div>
 
         {/* Rest of your existing content... */}
-        <div className="absolute w-1/3 left-[5%] top-1/2 transform -translate-y-1/2 md:space-y-2">
+        <div className="absolute w-1/2 h-[200px] md:full md:w-1/3 left-[5%] top-1/2 md:top-1/4 transform -translate-y-1/3 md:space-y-2">
           {/* Name */}
           <div className="relative space-y-4 ">
-            <h1 className="text-2xl md:text-4xl font-bold">{items.name}</h1>
-            <h2 className="text-lg md:text-2xl opacity-80">
+            <h1 className="text-lg md:text-4xl font-bold">{items.name}</h1>
+            <h2 className="text-base md:text-2xl opacity-80">
               {items.origin_name}
             </h2>
           </div>
-          <div className="flex items-center space-x-4 text-sm">
+          {/* Year, Quality */}
+          <div className="flex items-center space-x-4 text-xs md:text-sm">
             {items.year && <span>{items.year}</span>}
             {items.quality && (
               <span className="px-2 py-1 bg-white/20 rounded">
@@ -58,7 +59,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
             )}
             {items.lang && <span>{items.lang}</span>}
             {items.tmdb?.type && (
-              <span className="capitalize">{items.tmdb.type}</span>
+              <span className="uppercase">{items.tmdb.type}</span>
             )}
             {items.tmdb?.vote_average && (
               <span className="text-yellow-400">
@@ -69,11 +70,11 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
           </div>
           
           {/* Categories and Countries */}
-          <div className="flex flex-wrap gap-2 items-center">
+          <div className="hideen space-x-2 md:flex flex-wrap items-center">
             {items.country?.map((country, idx) => (
               <span
                 key={idx}
-                className="px-1 py-1 text-xs bg-white/30 rounded backdrop-blur-sm"
+                className="px-1 md:px-3 py-1 text-xs md:text-sm bg-white/30 rounded backdrop-blur-sm"
               >
                 {country.name}
               </span>
@@ -81,7 +82,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
             {items.category?.map((genre, idx) => (
               <span
                 key={idx}
-                className="px-1 py-1 text-xs bg-white/20 rounded backdrop-blur-sm"
+                className="px-1 md:px-3 py-1 text-xs md:text-sm bg-white/20 rounded backdrop-blur-sm"
               >
                 {genre.name}
               </span>
@@ -112,12 +113,12 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
               )}
           </div>
           {/* Actor */}
-          <div>
+          <div className="">
             {items?.actor &&
               items.actor.length > 0 &&
               items.actor.some((d) => d !== "") && (
                 <>
-                  <span className="inline text-sm invisible md:visible md:w-[400px] text-white">
+                  <span className="inline invisible md:visible text-sm md:w-[400px] text-white">
                     Diễn Viên:{" "}
                   </span>
                   {items.actor.map(
@@ -125,7 +126,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
                       x !== "" && (
                         <p
                           key={index}
-                          className="inline text-sm invisible md:visible md:w-[400px] text-gray-300"
+                          className="inline invisible md:visible text-sm md:w-[400px] text-gray-300"
                         >
                           {x}
                           {index < items.actor.length - 1 ? ", " : ""}
@@ -141,12 +142,13 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
 
           {/* Episode info */}
           {items.episode_current && (
-            <div className="text-sm">
+            <div className="invisible md:visible text-sm">
               Status: {items.episode_current}
               <br></br>
               Total: {items.episode_total}
             </div>
           )}
+          {/* Play action */}
           <div className="flex space-x-2 pt-4">
             <button className="flex items-center space-x-2 px-6 py-1 bg-green-500 rounded-lg hover:bg-green-600 transition-all duration-300 hover:scale-105">
               <Play className="w-4 h-4" />

@@ -188,7 +188,7 @@ const HeroSlider = () => {
 
                 {/* Action buttons */}
                 <div className="flex space-x-4 pt-4 h-12 md:h-16">
-                  <button className="flex items-center text-xs space-x-2 px-2 md:px-6 md:py-3 bg-green-500 rounded-3xl md:rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-105">
+                  <button className="flex items-center text-xs md:text-base space-x-2 px-3 md:px-6 md:py-6 bg-green-500 rounded-3xl md:rounded-full hover:bg-green-600 transition-all duration-300 hover:scale-105">
                     <Play className="w-3 h-3 md:w-5 md:h-5" />
                     <span>Play Now</span>
                   </button>
