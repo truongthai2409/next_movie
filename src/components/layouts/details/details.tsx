@@ -164,13 +164,15 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
           </div>
         </div>
       </div>
-
+      
+      {/* Details */}
       <div>
         <div className="w-[90%] h-[1px] mx-auto bg-white mb-4"></div>
         <div className="relative text-gray-200 mx-auto px-[5%]">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold mb-4">Details</h2>
           </div>
+          {/* <h1>hello</h1> */}
           <VideoPlayerLayout episodesNew={items.episodes} slug={slug} />
         </div>
       </div>

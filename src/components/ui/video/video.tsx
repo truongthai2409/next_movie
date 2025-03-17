@@ -19,6 +19,7 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
     return 0;
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [showEpisodeList, setShowEpisodeList] = useState(false);
 
   // Update localStorage when episode changes
   useEffect(() => {
@@ -35,6 +36,10 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
     try {
       setIsLoading(true);
       setCurrentEpisodeIndex(index);
+      // On mobile, auto-hide episode list after selection
+      if (window.innerWidth < 768) {
+        setShowEpisodeList(false);
+      }
     } catch (error) {
       console.error("Error changing episode:", error);
     } finally {
@@ -42,10 +47,14 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
     }
   };
 
+  const toggleEpisodeList = () => {
+    setShowEpisodeList(!showEpisodeList);
+  };
+
   const renderContent = () => {
     if (episodesNew[0].server_data.length > 1) {
       return (
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-4 md:grid-cols-5 gap-2">
           {episodesNew[0].server_data.map((_, index) => (
             <button
               key={index}
@@ -58,9 +67,6 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
                 }`}
             >
               <div>{index + 1}</div>
-              {/* <div className="text-xs">
-                {episode.name ? "Preview" : ""}
-              </div> */}
             </button>
           ))}
         </div>
@@ -73,11 +79,10 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
   };
 
   return (
-    <div className="flex h-[80vh] bg-gray-900 text-white my-5">
-      {/* Left side - Video Player */}
-      <div className="flex-grow">
-        <div className="relative h-full">
-          {/* Video Container with iframe */}
+    <div className="flex flex-col md:flex-row bg-gray-900 text-white my-5">
+      {/* Video Player */}
+      <div className="w-full md:flex-grow">
+        <div className="relative h-[50vh] md:h-[80vh]">
           <div className="relative w-full h-full bg-black">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-10">
@@ -91,20 +96,25 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
               className="w-full h-full"
               allowFullScreen
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              // autoplay;
               onLoad={() => setIsLoading(false)}
             />
           </div>
         </div>
       </div>
 
-      {/* Right side - Episodes List */}
-      <div className="w-80 bg-gray-800 overflow-y-auto scrool-bar">
-        <div className="p-4">
-          {/* <h2 className="text-xl font-bold mb-4">
-            {episodesNew[0].server_data[currentEpisodeIndex].name}
-          </h2> */}
+      {/* Mobile toggle button */}
+      <div className="md:hidden w-full bg-gray-800 p-4 flex justify-center">
+        <button 
+          onClick={toggleEpisodeList}
+          className="bg-green-600 text-white py-2 px-4 rounded"
+        >
+          {showEpisodeList ? 'Hide Episodes' : 'Show Episodes'}
+        </button>
+      </div>
 
+      {/* Episodes List - Hidden on mobile by default */}
+      <div className={`w-full md:w-80 bg-gray-800 overflow-y-auto scrool-bar ${showEpisodeList ? 'block' : 'hidden md:block'}`}>
+        <div className="p-4">
           {/* Tabs */}
           <div className="flex gap-4 mb-6">
             <button className="text-green-500 border-b-2 border-green-500 pb-2">
