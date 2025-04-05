@@ -7,6 +7,7 @@ import MovieList from './layouts/movie_list/movide_list'
 import DetailsPage from './layouts/details/details'
 import YouTubeVideo from './ui/trailer/youtube'
 import LoginForm from './form/login/login_form'
+import { AuthProvider } from './providers/auth-provider'
 
 export {
     Header,
@@ -17,5 +18,6 @@ export {
     MovieList,
     DetailsPage,
     YouTubeVideo,
-    LoginForm
+    LoginForm,
+    AuthProvider
 }

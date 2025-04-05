@@ -1,13 +1,15 @@
 "use client";
 import React, { useState, FormEvent } from "react";
 import { Github, Facebook } from "lucide-react";
-import { LoginCredentials, LoginFormProps, SocialProvider } from "@/types";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { LoginCredentials, SocialProvider } from "@/types";
+import { supabase } from "@/config/supabase";
 
-const LoginForm = ({
-  onSubmit,
-  onSocialLogin,
-  isLoading = false,
-}: LoginFormProps) => {
+const LoginForm = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: "",
     password: "",
@@ -21,13 +23,46 @@ const LoginForm = ({
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    onSubmit(credentials);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const result = await signIn("credentials", {
+        email: credentials.email,
+        password: credentials.password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        setError("Invalid email or password");
+      } else if (result?.ok) {
+        router.push("/dashboard"); // Redirect to dashboard after successful login
+        router.refresh(); // Refresh to update auth state
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again.");
+      console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleSocialLogin = (provider: SocialProvider): void => {
-    onSocialLogin(provider);
+  const handleSocialLogin = async (provider: SocialProvider): Promise<void> => {
+    setIsLoading(true);
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`, // sau khi đăng nhập thành công
+        },
+      });
+    } catch (error) {
+      console.error(`${provider} login error:`, error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -38,6 +73,12 @@ const LoginForm = ({
             Sign in to your account
           </h2>
         </div>
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
+            {error}
+          </div>
+        )}
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
