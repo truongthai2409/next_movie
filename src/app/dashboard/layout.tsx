@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Loading from "./loading";
+import { AuthProvider } from "@/components";
 
 export default function DashboardLayout({
   children,
@@ -11,15 +12,17 @@ export default function DashboardLayout({
   analytic: React.ReactNode;
 }) {
   return (
-    <div className="dashboard-layout">
-      <Suspense fallback={<Loading />}>
-        <aside>
-          <nav>Dashboard Sidebar Navigation</nav>
-        </aside>
-        <main>{children}</main>
-        {team}
-        {analytic}
-      </Suspense>
-    </div>
+    <AuthProvider>
+      <div className="dashboard-layout">
+        <Suspense fallback={<Loading />}>
+          <aside>
+            <nav>Dashboard Sidebar Navigation</nav>
+          </aside>
+          <main>{children}</main>
+          {team}
+          {analytic}
+        </Suspense>
+      </div>
+    </AuthProvider>
   );
 }

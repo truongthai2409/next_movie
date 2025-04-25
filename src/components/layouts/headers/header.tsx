@@ -1,10 +1,11 @@
 "use client";
-import { Menu, Search } from "lucide-react";
+import { Menu, Search, User } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-// import Image from "next/image";
+import Image from "next/image";
 import { MovieListResponse } from "@/types";
+import { signOut, useSession } from "next-auth/react";
 
 // Custom hook for debounced value
 function useDebounce<T>(value: T, delay: number = 500): T {
@@ -42,6 +43,11 @@ const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const debouncedSearchQuery = useDebounce<string>(searchQuery, 500);
+  const [showUserMenu, setShowUserMenu] = useState<boolean>(false);
+  
+  // Get session from NextAuth
+  const { data: session, status } = useSession();
+  const isAuthenticated = status === "authenticated";
 
   // Fetch search results using TanStack Query
   const { data: searchResults, isLoading, error } = useQuery<MovieListResponse[], Error>({
@@ -70,6 +76,29 @@ const Header: React.FC = () => {
       setIsSearching(false);
     }, 200);
   };
+
+  const toggleUserMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
+  const handleLogout = async () => {
+    await signOut({ redirect: true, callbackUrl: "/" });
+    setShowUserMenu(false);
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showUserMenu && !(event.target as Element).closest('.user-menu-container')) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showUserMenu]);
 
   return (
     <header
@@ -130,26 +159,12 @@ const Header: React.FC = () => {
                 <div className="p-3 text-red-400">Lỗi: Không thể tìm kiếm</div>
               ) : searchResults && searchResults.length > 0 ? (
                 searchResults.map((result) => (
-                 
                   <Link 
                     key={result.items[0]._id} 
                     href={`/movie/${result.items[0]._id}`}
-                    // className="px-4 py-2 hover:bg-gray-700 flex items-center"
+                    className="px-4 py-2 hover:bg-gray-700 flex items-center"
                   >
                     <h1>{result.items[0].name}</h1>
-                    {/* {result.movie.poster_url && (
-                      <Image 
-                        width={8}
-                        height={12}
-                        src={result.movie.poster_url} 
-                        alt={result.movie.origin_name} 
-                        className="w-8 h-12 object-cover mr-2"
-                      />
-                    )} */}
-                    {/* <div>
-                      <div className="text-white">{result.movie.name}</div>
-                      <div className="text-gray-400 text-sm">{result.movie.year}</div>
-                    </div> */}
                   </Link>
                 ))
               ) : debouncedSearchQuery.length > 0 ? (
@@ -166,9 +181,56 @@ const Header: React.FC = () => {
           <Link href="/" className="hover:text-gray-300">
             🌐 Ngôn ngữ
           </Link>
-          <Link href="/" className="hover:text-gray-300">
-            👤 Của tôi
-          </Link>
+          
+          {/* User profile or login button */}
+          {status === "loading" ? (
+            <div className="w-8 h-8 rounded-full bg-gray-700 animate-pulse"></div>
+          ) : isAuthenticated && session?.user ? (
+            <div className="relative user-menu-container">
+              <button onClick={toggleUserMenu} className="flex items-center hover:text-gray-300">
+                {session.user.image ? (
+                  <Image 
+                    src={session.user.image} 
+                    alt="User avatar" 
+                    width={32} 
+                    height={32} 
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center">
+                    <User size={18} />
+                  </div>
+                )}
+                <span className="ml-2">{session.user.name || 'User'}</span>
+              </button>
+              
+              {/* User dropdown menu */}
+              {showUserMenu && (
+                <div className="absolute right-0 mt-2 bg-gray-800 rounded shadow-lg w-48 z-50">
+                  <Link href="/user/profile" className="block px-4 py-2 hover:bg-gray-700">
+                    Hồ sơ
+                  </Link>
+                  <Link href="/user/favorites" className="block px-4 py-2 hover:bg-gray-700">
+                    Danh sách yêu thích
+                  </Link>
+                  <Link href="/user/settings" className="block px-4 py-2 hover:bg-gray-700">
+                    Cài đặt
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-700 text-red-400"
+                  >
+                    Đăng xuất
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/auth/login" className="hover:text-gray-300 flex items-center">
+              <User size={18} className="mr-1" /> Đăng nhập
+            </Link>
+          )}
+          
           <button className="bg-gray-800 px-2 py-1 rounded text-white hover:bg-gray-700">
             📱 APP
           </button>

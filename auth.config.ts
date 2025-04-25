@@ -1,27 +1,24 @@
 import { NextAuthOptions } from "next-auth";
-import { SupabaseAdapter, type SupabaseAdapterOptions } from "@auth/supabase-adapter";
+import { SupabaseAdapter } from "@auth/supabase-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
-import { supabase } from "@/config/supabase";
-// import { createClient } from "@supabase/supabase-js";
-
-const adapterOptions: SupabaseAdapterOptions & { schema?: string } = {
-  url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  schema: "public", 
-};
+import { adapterOptions, supabase } from "@/config";
+import jwt from "jsonwebtoken"
 
 export const authOptions: NextAuthOptions = {
+  
   adapter: SupabaseAdapter(adapterOptions),
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   pages: {
-    signIn: "/login",
+    signIn: "/auth/login",
     error: "/auth/error",
-    signOut: '/logout',
+    signOut: '/auth/signout',
     verifyRequest: '/auth/verify-request',
   },
   providers: [
@@ -73,28 +70,32 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user, account }) {
-      // Pass user ID and provider to the token
+    async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.provider = account?.provider;
+        token.id = user.id; // user.id từ Supabase khi login thành công
       }
       return token;
     },
     async session({ session, token }) {
-      if (token && session.user) {
-        session.user.id = token.id as string;
-        session.user.provider = token.provider as string;
+      const signingSecret = process.env.SUPABASE_JWT_SECRET;
+      if (signingSecret && token.id) {
+        const payload = {
+          aud: "authenticated",
+          exp: Math.floor(new Date(session.expires).getTime() / 1000),
+          sub: token.id, // Lấy từ token thay vì user
+          email: session.user?.email,
+          role: "authenticated",
+        };
+        session.supabaseAccessToken = jwt.sign(payload, signingSecret);
       }
+      // console.log(session)
       return session;
     },
-    async redirect({ url, baseUrl }) {
+    
+    async redirect({ baseUrl }) {
       // If the URL is relative, prepend the base URL
-      if (url.startsWith('/')) return `${baseUrl}${url}`
-      // If the URL is absolute but on the same origin, allow it
-      else if (new URL(url).origin === baseUrl) return url
-      // Otherwise, redirect to the dashboard or homepage
-      return baseUrl
+      return baseUrl + "/";
+
     },
   },
 };

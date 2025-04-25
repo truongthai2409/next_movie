@@ -1,10 +1,9 @@
-import { config } from "@/config";
 import { Movie, MovieDetail, MovieListResponse, MoviesData } from "@/types";
 
-export const BASEURL = config.api.baseUrl;
-export const MOVIE_END_POINT = config.api.movieEndpoint;
-export const API_LIST = config.api.list;
-export const VERSION_END_POINT = config.api.versionEndpoint;
+export const BASEURL = process.env.NEXT_PUBLIC_API_BASE_URL;
+export const MOVIE_END_POINT = process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT;
+export const API_LIST = process.env.NEXT_PUBLIC_API_LIST;
+export const VERSION_END_POINT = process.env.NEXT_PUBLIC_API_VERSION_ENDPOINT;
 
 // get endpoint
 export const getApiUrl = (endpoint: string) => {

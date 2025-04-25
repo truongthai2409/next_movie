@@ -4,7 +4,8 @@ import { Github, Facebook } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { LoginCredentials, SocialProvider } from "@/types";
-import { supabase } from "@/config/supabase";
+
+// import { supabase } from "@/config/supabase";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -38,7 +39,7 @@ const LoginForm = () => {
       if (result?.error) {
         setError("Invalid email or password");
       } else if (result?.ok) {
-        router.push("/dashboard"); // Redirect to dashboard after successful login
+        router.push("/user/profile"); // Redirect to dashboard after successful login
         router.refresh(); // Refresh to update auth state
       }
     } catch (error) {
@@ -52,12 +53,7 @@ const LoginForm = () => {
   const handleSocialLogin = async (provider: SocialProvider): Promise<void> => {
     setIsLoading(true);
     try {
-      await supabase.auth.signInWithOAuth({
-        provider,
-        options: {
-          redirectTo: `${window.location.origin}/dashboard`, // sau khi đăng nhập thành công
-        },
-      });
+      await signIn(provider, { callbackUrl: "/dashboard" });
     } catch (error) {
       console.error(`${provider} login error:`, error);
     } finally {
