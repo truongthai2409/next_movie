@@ -2,13 +2,16 @@
 import React, { useState, FormEvent } from "react";
 import { Github, Facebook } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams  } from "next/navigation";
 import { LoginCredentials, SocialProvider } from "@/types";
 
-// import { supabase } from "@/config/supabase";
 
 const LoginForm = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/user/profile";
+  console.log(searchParams)
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [credentials, setCredentials] = useState<LoginCredentials>({
@@ -53,7 +56,8 @@ const LoginForm = () => {
   const handleSocialLogin = async (provider: SocialProvider): Promise<void> => {
     setIsLoading(true);
     try {
-      await signIn(provider, { callbackUrl: "/dashboard" });
+      await signIn(provider, { callbackUrl });
+      // await signIn(provider, { callbackUrl });
     } catch (error) {
       console.error(`${provider} login error:`, error);
     } finally {

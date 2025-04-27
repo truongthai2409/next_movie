@@ -91,12 +91,11 @@ export const authOptions: NextAuthOptions = {
       // console.log(session)
       return session;
     },
-    
-    async redirect({ baseUrl }) {
-      // If the URL is relative, prepend the base URL
-      return baseUrl + "/";
+    // async redirect({ baseUrl }) {
+    //   // If the URL is relative, prepend the base URL
+    //   return baseUrl + "/";
 
-    },
+    // },
   },
 };
 
