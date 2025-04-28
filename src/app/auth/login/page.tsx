@@ -1,14 +1,14 @@
 "use client"
 import { LoginForm } from "@/components";
 import { useProtectedRoute } from "@/hooks";
-import React from "react";
+import React, { Suspense } from "react";
 
 const LoginPage = () => {
   useProtectedRoute();
   return (
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <LoginForm/>
-    </div>
+    </Suspense>
   );
 };
 

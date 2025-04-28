@@ -12,11 +12,13 @@ export const useProtectedRoute = () => {
   useEffect(() => {
     if (status === "loading") return; // Wait for session to load
 
-    if (!session && status === "unauthenticated") {
-      // If user is not logged in, redirect to login page with callback URL
-      const callbackUrl = encodeURIComponent(pathname || "/");
-      router.push(`/auth/login?callbackUrl=${callbackUrl}`);
-    } else if (session && pathname === "/auth/login") {
+    // if (!session && status === "unauthenticated") {
+    //   // If user is not logged in, redirect to login page with callback URL
+    //   const callbackUrl = encodeURIComponent(pathname || "/");
+    //   router.push(`/auth/login?callbackUrl=${callbackUrl}`);
+    // } else 
+
+    if (session && pathname === "/auth/login") {
       // If user is logged in and on login page, redirect to home
       router.push("/");
     }
