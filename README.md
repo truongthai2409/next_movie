@@ -20,8 +20,10 @@ A modern Movie App built with [Next.js](https://nextjs.org/), using TMDB API to 
 
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/) (optional)
-- [Axios](https://axios-http.com/)
+- [TanStack](https://tanstack.com/)
 - [TypeScript](https://www.typescriptlang.org/) (optional)
+- [Supabase](https://supabase.com/)
+- [NextAuth](https://next-auth.js.org/)
 
 ## 📦 Installation
 
