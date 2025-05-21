@@ -35,7 +35,7 @@ const HeroSlider = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["movies"],
     queryFn: fetchMovies,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 5 * 60 * 1000, 
   });
 
   useEffect(() => {
