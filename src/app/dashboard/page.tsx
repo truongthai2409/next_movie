@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { createClient } from "@supabase/supabase-js";
 import { useSession } from "next-auth/react";
@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 
 const Homepage = () => {
   const { data: session, status } = useSession();
-  
+
   useEffect(() => {
     if (status === "authenticated" && session?.supabaseAccessToken) {
       const supabase = createClient(
@@ -22,7 +22,8 @@ const Homepage = () => {
         }
       );
 
-      supabase.from("users")
+      supabase
+        .from("users")
         .select("*")
         .then(({ data, error }) => {
           console.log("Data:", data);
@@ -32,7 +33,15 @@ const Homepage = () => {
   }, [session, status]);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <video
+        src="/LoadingAnimation.webm"
+        autoPlay
+        loop
+        muted
+        className="w-32 h-32"
+      />
+    );
   }
 
   if (status === "unauthenticated") {
