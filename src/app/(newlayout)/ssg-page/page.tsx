@@ -20,7 +20,8 @@ async function fetchUnsplashPhotos(): Promise<UnsplashPhoto[]> {
     { next: { revalidate: 3600 } }
   );
   if (!res.ok) throw new Error("Failed to fetch Unsplash photos");
-  return res.json();
+  const data = await res.json()
+  return data;
 }
 
 export default async function SSGExamplePage() {
