@@ -32,9 +32,7 @@ export default function RootLayout({
       >
         <TanStackProvider>
           <AuthProvider>
-            <Header />
             {children}
-            <Footer />
           </AuthProvider>
         </TanStackProvider>
       </body>

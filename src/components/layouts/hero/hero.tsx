@@ -5,21 +5,12 @@ import { ChevronLeft, ChevronRight, Play, BookmarkPlus } from "lucide-react";
 import type { Movie, MovieResponse } from "@/types";
 import { API_LIST, getApiUrl, getMovieDetailUrl } from "@/utils";
 import Image from "next/image";
-import dynamic from "next/dynamic";
+import { LoadingVideo } from "@/components";
+
 
 interface MovieDetail {
   movie: Movie;
 }
-
-const LoadingVideo = dynamic(() => Promise.resolve(() => (
-  <video
-    src="/LoadingAnimation.webm"
-    autoPlay
-    loop
-    muted
-    className="w-32 h-32"
-  />
-)), { ssr: false });
 
 const fetchMovies = async (): Promise<MovieDetail[]> => {
   const response = await fetch(
@@ -70,7 +61,6 @@ const HeroSlider = () => {
   if (isLoading) {
     return (
       <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
-        {/* <div className="text-white text-xl">Loading...123</div> */}
         <LoadingVideo/>
       </div>
     );
@@ -101,7 +91,7 @@ const HeroSlider = () => {
   return (
     <div className="relative w-full overflow-hidden">
       {/* Slides container */}
-      <div className="relative h-[250px] md:h-[600px] w-full">
+      <div className="relative h-[250px] md:h-[600px] 2xl:h-[80vh] w-full">
         {data.map((movieData, index) => (
           <div
             key={movieData.movie._id}
@@ -123,14 +113,14 @@ const HeroSlider = () => {
 
             {/* Content */}
             <div
-              className={`absolute bottom-0 left-0 p-8 text-white transition-all duration-500 ease-in-out
+              className={`absolute bottom-0 left-0 w-full 2xl:w-[1200px] p-10 2xl:p-40 text-white transition-all duration-500 ease-in-out
                 ${
                   currentSlide === index && !isChanging
                     ? "translate-y-0 opacity-100"
                     : "translate-y-4 opacity-0"
                 }`}
             >
-              <div className="md:space-y-4 md:pl-6">
+              <div className="md:space-y-6 md:pl-8">
                 {/* Title and Original Title */}
                 <div className="space-y-2">
                   <h1 className="text-xl md:text-5xl font-bold">

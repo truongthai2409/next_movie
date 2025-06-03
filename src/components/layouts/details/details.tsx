@@ -13,9 +13,9 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
 
   return (
     <div>
-      <div className="relative w-full h-[250px] md:h-[600px] text-white">
+      <div className="relative w-full h-[250px] md:h-[600px] 2xl:h-[80vh] text-white">
         {/* Image */}
-        <div className="absolute top-0 right-0 h-[250px] w-full md:h-[500px] md:w-4/5">
+        <div className="absolute top-0 right-0 h-[250px] w-full md:h-[500px] 2xl:h-[70vh] md:w-4/5">
           {items.trailer_url && items.trailer_url.length > 0 ? (
             <>
               <div>

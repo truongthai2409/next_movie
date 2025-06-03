@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: Params }) {
     <div className="bg-black">
       <Suspense
         fallback={
-          <div className="h-[600px] w-full flex items-center justify-center">
+          <div className="h-[600px] lg:h-[80vh] w-full flex items-center justify-center">
             {/* <div className="text-white text-xl">Loading...</div> */}
             <video
               src="/LoadingAnimation.webm"
