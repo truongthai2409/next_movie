@@ -1,7 +1,5 @@
 // "use client";
 
-import { createClient } from "@supabase/supabase-js";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
