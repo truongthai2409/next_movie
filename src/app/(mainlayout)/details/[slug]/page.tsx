@@ -1,4 +1,4 @@
-import { DetailsPage, MovieList } from "@/components";
+import { DetailsPage, LoadingVideo, MovieList } from "@/components";
 import { Suspense } from "react";
 import { unstable_cache } from "next/cache";
 import { fetchAllMovieData, fetchMovieDetails } from "@/utils";
@@ -25,13 +25,14 @@ export default async function Page({ params }: { params: Params }) {
         fallback={
           <div className="h-[600px] lg:h-[80vh] w-full flex items-center justify-center">
             {/* <div className="text-white text-xl">Loading...</div> */}
-            <video
+            {/* <video
               src="/LoadingAnimation.webm"
               autoPlay
               loop
               muted
               className="w-32 h-32"
-            />
+            /> */}
+            <LoadingVideo/>
           </div>
         }
       >

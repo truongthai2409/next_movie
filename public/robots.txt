@@ -1,0 +1,16 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /api/
+Disallow: /auth/
+Disallow: /watch/
+Disallow: /admin/
+
+# Host
+Host: https://next-imovie.vercel.app
+
+# Sitemaps
+Sitemap: https://next-imovie.vercel.app/sitemap.xml
