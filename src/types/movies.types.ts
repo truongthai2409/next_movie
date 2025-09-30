@@ -23,11 +23,18 @@ export interface PropsVideo {
 export interface MovieResponse {
   item: Movie;
   items: Movie[];
+  seoOnPage: SeoOnPage;
   pagination: {
     totalItems: number;
     totalPages: number;
     currentPage: number;
   };
+}
+interface SeoOnPage {
+  og_image: string[];
+  titleHead: string;
+  keywords: string;
+  descriptionHead: string;
 }
 export interface MovieDetail {
   data: MovieResponse;

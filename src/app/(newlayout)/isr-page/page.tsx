@@ -16,6 +16,11 @@ interface UnsplashImage {
   };
 }
 
+export const metadata = {
+  title: "Blog Gallery (ISR)",
+  description: "A blog page displaying images from Unsplash with ISR in Next.js",
+};
+
 // Hàm lấy danh sách ảnh random từ Unsplash
 async function getImages() {
   const res = await fetch(

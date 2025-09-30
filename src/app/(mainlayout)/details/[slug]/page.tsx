@@ -1,5 +1,4 @@
-import { DetailsPage, LoadingVideo, MovieList } from "@/components";
-import { Suspense } from "react";
+import { DetailsPage, MovieList } from "@/components";
 import { unstable_cache } from "next/cache";
 import { fetchAllMovieData, fetchMovieDetails } from "@/utils";
 import { Params } from "@/types";
@@ -12,32 +11,22 @@ const getCachedMovieDetails = unstable_cache(
   { revalidate: 3600 } // Revalidate every 1 hour
 );
 
+export async function generateMetadata({ params }: { params: Params }) {
+  return import("@/utils/metadata/routing_metadata").then(
+    ({ generateMetadata }) => generateMetadata({ params })
+  );
+}
+
 export default async function Page({ params }: { params: Params }) {
   // Fetch both in parallel
   const { slug } = await params;
   const movieDetails = await getCachedMovieDetails(slug);
-  // console.log(movieDetails)
+  // console.log(movieDetails);
   const movieData = await fetchAllMovieData();
 
   return (
     <div className="bg-black">
-      <Suspense
-        fallback={
-          <div className="h-[600px] lg:h-[80vh] w-full flex items-center justify-center">
-            {/* <div className="text-white text-xl">Loading...</div> */}
-            {/* <video
-              src="/LoadingAnimation.webm"
-              autoPlay
-              loop
-              muted
-              className="w-32 h-32"
-            /> */}
-            <LoadingVideo/>
-          </div>
-        }
-      >
-        <DetailsPage slug={slug} initialData={movieDetails} />
-      </Suspense>
+      <DetailsPage slug={slug} initialData={movieDetails} />
       <div className="max-w-4xl mx-auto mt-10 px-4 py-6 bg-white rounded shadow">
         <CommentClientWrapper slug={slug} />
       </div>
