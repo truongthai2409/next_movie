@@ -9,9 +9,9 @@ export default function Error({
 }) {
   return (
     <html>
-      <body>
+      <body className=" text-white">
         <h2>💥 Đã có lỗi xảy ra!</h2>
-        <p>Please reset 2 123</p>
+        <p>Please reset</p>
         <p>{error.message}</p>
         <button onClick={() => reset()}>Thử lại</button>
       </body>

@@ -18,7 +18,17 @@ export async function generateMetadata({ params }: { params: Params }) {
           width: 800,
           height: 600,
         },
-      ]
+      ],
+    },
+    twitter: {},
+    facebook: {},
+    alternates: {
+      canonical: `https://next-imovie.vercel.app/details/${movieDetails.data.item.slug}`,
+    },
+    propertys: {
+      "og:title": movieDetails.data.seoOnPage.titleHead,
+      "og:description": movieDetails.data.seoOnPage.descriptionHead,
+      "og:image": movieDetails.data.seoOnPage.og_image[0],
     },
   };
 }
