@@ -3,6 +3,7 @@ import { fetchMovieDetails } from "..";
 
 export async function generateMetadata({ params }: { params: Params }) {
   const movieDetails = await fetchMovieDetails((await params).slug);
+  // console.log(movieDetails)
   return {
     title: movieDetails.data.seoOnPage.titleHead,
     description: movieDetails.data.seoOnPage.descriptionHead,
@@ -14,7 +15,9 @@ export async function generateMetadata({ params }: { params: Params }) {
       siteName: "Next Movie",
       images: [
         {
-          url: movieDetails.data.seoOnPage.og_image[0],
+          // url: `https://img.ophim.live/uploads/${}`movieDetails.data.seoOnPage.og_image[0],
+          url: movieDetails.data.seoOnPage.seoSchema.image,
+          alt: movieDetails.data.item.origin_name,
           width: 800,
           height: 600,
         },

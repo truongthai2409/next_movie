@@ -35,6 +35,15 @@ interface SeoOnPage {
   titleHead: string;
   keywords: string;
   descriptionHead: string;
+  seoSchema: SeoSchema;
+}
+interface SeoSchema {
+  "@context": string;
+  "@type": string;
+  name: string;
+  description: string;
+  url: string;
+  image: string[];
 }
 export interface MovieDetail {
   data: MovieResponse;
