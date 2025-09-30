@@ -5,7 +5,7 @@ export default function Error({ error, reset }: { error: Error; reset: () => voi
     <html>
       <body>
         <h2>💥 Đã có lỗi xảy ra!</h2>
-        <p>Please reset</p>
+                <p>Please reset</p>
         <p>{error.message}</p>
         <button onClick={() => reset()}>Thử lại</button>
       </body>
