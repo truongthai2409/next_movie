@@ -71,7 +71,7 @@ const DashboardPage = () => {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-white mb-2">Welcome back! 👋</h1>
-            <p className="text-slate-300">Here's what's happening with your movie platform today.</p>
+            <p className="text-slate-300">Heres whats happening with your movie platform today.</p>
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold text-white">{new Date().toLocaleDateString()}</div>
