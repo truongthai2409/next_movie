@@ -11,7 +11,7 @@ export default function Error({
     <html>
       <body>
         <h2>💥 Đã có lỗi xảy ra!</h2>
-        <p>Please reset 2</p>
+        <p>Please reset 2 123</p>
         <p>{error.message}</p>
         <button onClick={() => reset()}>Thử lại</button>
       </body>

@@ -1,0 +1,7 @@
+# filepath: d:\NextJS\next_movie\.husky\pre-commit
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+npx prettier --write .
+npm run build
