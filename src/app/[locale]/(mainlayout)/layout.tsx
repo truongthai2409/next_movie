@@ -6,9 +6,9 @@ export default async function MainLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }>) {
-  const { locale } = params;
+  const { locale } = await params;
   const messages = (await import(`@/messages/${locale}.json`)).default;
   return (
     <NextIntlClientProvider messages={messages}>
