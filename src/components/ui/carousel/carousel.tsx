@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Card from "../card/card";
 import { Movie } from "@/types";
+import { useLocale } from "next-intl";
 
 interface CarouselProps {
   title?: string;

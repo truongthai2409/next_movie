@@ -1,21 +1,16 @@
-// "use client";
 import React from "react";
 import Image from "next/image";
 import { Movie } from "@/types";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+// import Link from "next/link";
 
 interface ItemCardProps {
   card: Movie;
 }
 
 const Card: React.FC<ItemCardProps> = ({ card }) => {
-  const {
-    thumb_url,
-    origin_name,
-    episode_current,
-    sub_docquyen,
-    quality,
-  } = card;
+  const { thumb_url, origin_name, episode_current, sub_docquyen, quality } =
+    card;
 
   return (
     <div

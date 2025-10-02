@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://next-imovie.vercel.app/sitemap.xml</loc><lastmod>2025-09-30T08:48:41.590Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app/user/profile</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app/auth/login</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app/ssg-page</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app/dashboard</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://next-imovie.vercel.app/user/settings</loc><lastmod>2025-09-30T08:48:41.591Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app</loc><lastmod>2025-09-30T09:20:04.414Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/sitemap.xml</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/user/profile</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/dashboard</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/ssg-page</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/user/settings</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://next-imovie.vercel.app/auth/login</loc><lastmod>2025-09-30T09:20:04.415Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

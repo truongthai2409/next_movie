@@ -1,0 +1,18 @@
+{
+  "Header": {
+    "newfilm": "Moonlight Mystique",
+    "favorites": "Favorites",
+    "suggest": "Suggestions",
+    "other": "Others",
+    "option1": "Option 1",
+    "option2": "Option 2",
+    "history": "Watch history",
+    "app": "APP",
+    "vip": "VIP",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings",
+    "lang": "Language"
+  }
+}

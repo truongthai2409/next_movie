@@ -1,0 +1,18 @@
+{
+  "Header": {
+    "newfilm": "달빛 비밀",
+    "favorites": "즐겨찾기",
+    "suggest": "추천",
+    "other": "기타",
+    "option1": "옵션 1",
+    "option2": "옵션 2",
+    "history": "시청 기록",
+    "app": "APP",
+    "vip": "VIP",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "profile": "프로필",
+    "settings": "설정",
+    "lang": "언어"
+  }
+}

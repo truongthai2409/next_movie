@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/components";
 import { TanStackProvider } from "@/config";
+import { NextIntlClientProvider } from "next-intl";
+import { routing } from "@/i18n/routing";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,15 +27,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const defaultLocale = routing.defaultLocale;
   return (
-    <html lang="en">
+    <html lang={defaultLocale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
       >
         <TanStackProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          <NextIntlClientProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </NextIntlClientProvider>
         </TanStackProvider>
       </body>
     </html>

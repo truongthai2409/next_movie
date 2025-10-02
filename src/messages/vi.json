@@ -1,0 +1,18 @@
+{
+  "Header": {
+    "newfilm": "Bạch Nguyệt Phạn Tình",
+    "favorites": "Yêu thích",
+    "suggest": "Đề xuất",
+    "other": "Khác",
+    "option1": "Tùy chọn 1",
+    "option2": "Tùy chọn 2",
+    "history": "Lịch sử xem",
+    "app": "APP",
+    "vip": "VIP",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "profile": "Hồ sơ",
+    "settings": "Cài đặt",
+    "lang": "Ngôn ngữ"
+  }
+}
