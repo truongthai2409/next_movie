@@ -17,10 +17,10 @@ async function fetchUnsplashPhotos(): Promise<UnsplashPhoto[]> {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   const res = await fetch(
     `https://api.unsplash.com/photos?per_page=10&client_id=${accessKey}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 3600 } },
   );
   if (!res.ok) throw new Error("Failed to fetch Unsplash photos");
-  const data = await res.json()
+  const data = await res.json();
   return data;
 }
 
@@ -32,7 +32,10 @@ export default async function SSGExamplePage() {
       <h1 className="text-2xl font-bold mb-4">📷 Unsplash SSG Example Page</h1>
       <ul className="space-y-4">
         {photos.map((photo) => (
-          <li key={photo.id} className="p-3 bg-gray-100 rounded flex items-center space-x-4">
+          <li
+            key={photo.id}
+            className="p-3 bg-gray-100 rounded flex items-center space-x-4"
+          >
             <img
               src={photo.urls.small}
               alt={photo.alt_description ?? "Unsplash Photo"}

@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     name: session.user.name,
     image: session.user.image,
     created_at: new Date().toISOString(),
-  }
+  };
 
   const { data, error } = await supabase
     .from("comments")

@@ -29,7 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 }
 
-
 // app/sitemap.ts
 // tạo sitemap động
 

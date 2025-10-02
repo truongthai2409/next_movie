@@ -20,9 +20,9 @@ export default function CommentSection({ slug }: Props) {
   const { data: session } = useSession();
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState("");
-// console.log(session)
+  // console.log(session)
   const handleSubmit = async () => {
-    console.log(comments)
+    console.log(comments);
     if (!newComment.trim()) return;
 
     try {
@@ -51,10 +51,10 @@ export default function CommentSection({ slug }: Props) {
       <div className="space-y-2">
         {comments.map((comment) => (
           <div key={comment.id} className="bg-gray-100 p-2 rounded">
-              <div className="font-semibold">{comment.user.name}</div>
-              <p>{comment.content}</p>
-              <span className="text-sm text-gray-500">{comment.created_at}</span>
-            </div>
+            <div className="font-semibold">{comment.user.name}</div>
+            <p>{comment.content}</p>
+            <span className="text-sm text-gray-500">{comment.created_at}</span>
+          </div>
         ))}
       </div>
 

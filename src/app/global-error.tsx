@@ -1,6 +1,12 @@
 // app/global-error.tsx
-'use client'; // bắt buộc là client component
-export default function GlobalError({ error, reset }: { error: Error; reset: () => void }) {
+"use client"; // bắt buộc là client component
+export default function GlobalError({
+  error,
+  reset,
+}: {
+  error: Error;
+  reset: () => void;
+}) {
   return (
     <html>
       <body>

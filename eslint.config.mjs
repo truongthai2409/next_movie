@@ -9,14 +9,15 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig =
-  [...compat.extends("next/core-web-vitals", "next/typescript"),];
-  // {
-  //   extends: ["next"],
-  //   rules: {
-  //     "react/no-unescaped-entities": "off",
-  //     "@next/next/no-page-custom-font": "off",
-  //   },
-  // };
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+];
+// {
+//   extends: ["next"],
+//   rules: {
+//     "react/no-unescaped-entities": "off",
+//     "@next/next/no-page-custom-font": "off",
+//   },
+// };
 
 export default eslintConfig;

@@ -1,13 +1,20 @@
 .spinner {
-   width: 11.2px;
-   height: 11.2px;
-   animation: spinner-z355kx 1s infinite linear;
-   border-radius: 11.2px;
-   box-shadow: 28px 0px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), 17.4px 21.8px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), -6.2px 27.2px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), -25.2px 12px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), -25.2px -12px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), -6.2px -27.2px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)), 17.4px -21.8px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1));
+  width: 11.2px;
+  height: 11.2px;
+  animation: spinner-z355kx 1s infinite linear;
+  border-radius: 11.2px;
+  box-shadow:
+    28px 0px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    17.4px 21.8px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    -6.2px 27.2px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    -25.2px 12px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    -25.2px -12px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    -6.2px -27.2px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1)),
+    17.4px -21.8px 0 0 rgb(34 197 94 / var(--tw-text-opacity, 1));
 }
 
 @keyframes spinner-z355kx {
-   to {
-      transform: rotate(360deg);
-   }
+  to {
+    transform: rotate(360deg);
+  }
 }

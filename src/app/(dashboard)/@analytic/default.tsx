@@ -1,27 +1,37 @@
-import React from 'react'
-import { TrendingUp, TrendingDown, Eye, Star, Calendar } from 'lucide-react'
+import React from "react";
+import { TrendingUp, TrendingDown, Eye, Star, Calendar } from "lucide-react";
 
 const AnalyticsPage = () => {
   // Dữ liệu mẫu
   const weeklyData = [
-    { day: 'Mon', views: 2400, users: 1800 },
-    { day: 'Tue', views: 3200, users: 2200 },
-    { day: 'Wed', views: 2800, users: 1900 },
-    { day: 'Thu', views: 4100, users: 2800 },
-    { day: 'Fri', views: 5200, users: 3500 },
-    { day: 'Sat', views: 6800, users: 4200 },
-    { day: 'Sun', views: 7200, users: 4800 }
-  ]
+    { day: "Mon", views: 2400, users: 1800 },
+    { day: "Tue", views: 3200, users: 2200 },
+    { day: "Wed", views: 2800, users: 1900 },
+    { day: "Thu", views: 4100, users: 2800 },
+    { day: "Fri", views: 5200, users: 3500 },
+    { day: "Sat", views: 6800, users: 4200 },
+    { day: "Sun", views: 7200, users: 4800 },
+  ];
 
   const topMovies = [
-    { title: 'Avatar: The Way of Water', views: 125000, rating: 4.8, trend: 'up' },
-    { title: 'Top Gun: Maverick', views: 98000, rating: 4.7, trend: 'up' },
-    { title: 'Black Panther 2', views: 87000, rating: 4.6, trend: 'down' },
-    { title: 'Spider-Man: No Way Home', views: 76000, rating: 4.9, trend: 'up' }
-  ]
+    {
+      title: "Avatar: The Way of Water",
+      views: 125000,
+      rating: 4.8,
+      trend: "up",
+    },
+    { title: "Top Gun: Maverick", views: 98000, rating: 4.7, trend: "up" },
+    { title: "Black Panther 2", views: 87000, rating: 4.6, trend: "down" },
+    {
+      title: "Spider-Man: No Way Home",
+      views: 76000,
+      rating: 4.9,
+      trend: "up",
+    },
+  ];
 
-  const maxViews = Math.max(...weeklyData.map(d => d.views))
-  const maxUsers = Math.max(...weeklyData.map(d => d.users))
+  const maxViews = Math.max(...weeklyData.map((d) => d.views));
+  const maxUsers = Math.max(...weeklyData.map((d) => d.users));
 
   return (
     <div className="space-y-6">
@@ -41,12 +51,12 @@ const AnalyticsPage = () => {
             {weeklyData.map((data, index) => (
               <div key={index} className="flex flex-col items-center space-y-2">
                 <div className="flex flex-col items-center space-y-1">
-                  <div 
+                  <div
                     className="w-8 bg-gradient-to-t from-purple-500 to-pink-500 rounded-t transition-all duration-500 hover:from-purple-400 hover:to-pink-400"
                     style={{ height: `${(data.views / maxViews) * 120}px` }}
                     title={`${data.day}: ${data.views.toLocaleString()} views`}
                   ></div>
-                  <div 
+                  <div
                     className="w-6 bg-gradient-to-t from-blue-500 to-cyan-500 rounded-t transition-all duration-500 hover:from-blue-400 hover:to-cyan-400"
                     style={{ height: `${(data.users / maxUsers) * 80}px` }}
                     title={`${data.day}: ${data.users.toLocaleString()} users`}
@@ -99,10 +109,15 @@ const AnalyticsPage = () => {
 
       {/* Top Movies Analytics */}
       <div className="bg-slate-800/50 backdrop-blur-lg rounded-xl p-6 border border-slate-700/50">
-        <h2 className="text-xl font-bold text-white mb-6">Top Performing Movies</h2>
+        <h2 className="text-xl font-bold text-white mb-6">
+          Top Performing Movies
+        </h2>
         <div className="space-y-4">
           {topMovies.map((movie, index) => (
-            <div key={index} className="flex items-center justify-between p-4 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-all">
+            <div
+              key={index}
+              className="flex items-center justify-between p-4 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-all"
+            >
               <div className="flex items-center space-x-4">
                 <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold">
                   {index + 1}
@@ -121,11 +136,17 @@ const AnalyticsPage = () => {
                   </div>
                 </div>
               </div>
-              <div className={`flex items-center space-x-1 text-sm ${
-                movie.trend === 'up' ? 'text-green-400' : 'text-red-400'
-              }`}>
-                {movie.trend === 'up' ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
-                <span>{movie.trend === 'up' ? '+5.2%' : '-2.1%'}</span>
+              <div
+                className={`flex items-center space-x-1 text-sm ${
+                  movie.trend === "up" ? "text-green-400" : "text-red-400"
+                }`}
+              >
+                {movie.trend === "up" ? (
+                  <TrendingUp className="w-4 h-4" />
+                ) : (
+                  <TrendingDown className="w-4 h-4" />
+                )}
+                <span>{movie.trend === "up" ? "+5.2%" : "-2.1%"}</span>
               </div>
             </div>
           ))}
@@ -157,7 +178,9 @@ const AnalyticsPage = () => {
         </div>
 
         <div className="bg-slate-800/50 backdrop-blur-lg rounded-xl p-6 border border-slate-700/50">
-          <h3 className="text-lg font-bold text-white mb-4">Content Performance</h3>
+          <h3 className="text-lg font-bold text-white mb-4">
+            Content Performance
+          </h3>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-slate-300">Movies Added This Week</span>
@@ -179,7 +202,7 @@ const AnalyticsPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AnalyticsPage
+export default AnalyticsPage;

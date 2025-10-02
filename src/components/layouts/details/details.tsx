@@ -6,7 +6,6 @@ import YouTubeVideo from "@/components/ui/trailer/youtube";
 import VideoPlayerLayout from "@/components/ui/video/video";
 import ContentDisplay from "@/components/ui/content/content";
 
-
 const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
   // console.log(initialData)
   const items: Movie = initialData?.data?.item;
@@ -68,7 +67,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
             )}
             {items.episode_current && <span>{items.episode_current}</span>}
           </div>
-          
+
           {/* Categories and Countries */}
           <div className="hideen space-x-2 md:flex flex-wrap items-center">
             {items.country?.map((country, idx) => (
@@ -107,7 +106,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
                           {x}
                           {index < items.director.length - 1 ? ", " : ""}
                         </p>
-                      )
+                      ),
                   )}
                 </>
               )}
@@ -131,7 +130,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
                           {x}
                           {index < items.actor.length - 1 ? ", " : ""}
                         </p>
-                      )
+                      ),
                   )}
                 </>
               )}
@@ -164,7 +163,7 @@ const DetailsPage = ({ slug, initialData }: DetailsPageProps) => {
           </div>
         </div>
       </div>
-      
+
       {/* Details */}
       <div>
         <div className="w-[90%] h-[1px] mx-auto bg-white mb-4"></div>

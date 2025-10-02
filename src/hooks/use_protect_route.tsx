@@ -16,7 +16,7 @@ export const useProtectedRoute = () => {
     //   // If user is not logged in, redirect to login page with callback URL
     //   const callbackUrl = encodeURIComponent(pathname || "/");
     //   router.push(`/auth/login?callbackUrl=${callbackUrl}`);
-    // } else 
+    // } else
 
     if (session && pathname === "/auth/login") {
       // If user is logged in and on login page, redirect to home

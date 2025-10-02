@@ -1,10 +1,6 @@
 import React from "react";
 
-export default function NewLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function NewLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <header>

@@ -1,7 +1,13 @@
-"use client"
+"use client";
 import { useState } from "react";
 
-const ContentDisplay = ({ content, charLimit }: { content: string, charLimit: number }) => {
+const ContentDisplay = ({
+  content,
+  charLimit,
+}: {
+  content: string;
+  charLimit: number;
+}) => {
   const [showAll, setShowAll] = useState(false);
 
   const handleToggle = () => {

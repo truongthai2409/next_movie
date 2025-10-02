@@ -9,4 +9,4 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   return <SessionProvider>{children}</SessionProvider>;
-}
+};

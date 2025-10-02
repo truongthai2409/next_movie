@@ -3,16 +3,23 @@ import { useState } from "react";
 import YouTube from "react-youtube";
 import Image from "next/image";
 
-const YouTubeVideo = ({ trailerUrl, posterUrl, name }: {trailerUrl: string, posterUrl: string, name: string}) => {
+const YouTubeVideo = ({
+  trailerUrl,
+  posterUrl,
+  name,
+}: {
+  trailerUrl: string;
+  posterUrl: string;
+  name: string;
+}) => {
   const [showImage, setShowImage] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [player, setPlayer] = useState<YT.Player | null>(null);
-  
 
   const handleVideoEnd = () => {
     setShowImage(true);
   };
-  
+
   const toggleMute = () => {
     if (player) {
       if (isMuted) {

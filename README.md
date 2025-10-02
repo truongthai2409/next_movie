@@ -39,3 +39,4 @@ npm install
 
 # Create .env file
 cp .env.example .env.local
+```

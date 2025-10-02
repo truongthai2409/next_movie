@@ -11,10 +11,9 @@ export const getAuthenticatedSupabase = (accessToken: string) => {
           Authorization: `Bearer ${accessToken}`,
         },
       },
-    }
+    },
   );
 };
-
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -24,5 +23,5 @@ export const supabase = createClient(
 export const adapterOptions: SupabaseAdapterOptions & { schema?: string } = {
   url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
   secret: process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  schema: "public", 
+  schema: "public",
 };

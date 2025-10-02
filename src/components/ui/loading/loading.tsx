@@ -1,2 +1,2 @@
-import './loading.css'
+import "./loading.css";
 export const LoadingVideo = () => <div className="spinner"></div>;

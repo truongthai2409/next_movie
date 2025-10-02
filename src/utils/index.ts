@@ -30,7 +30,7 @@ export const extractItems = (jsonData: JSON) => {
 
 export async function fetchMovieData(
   category: string,
-  endpoint: string
+  endpoint: string,
 ): Promise<MovieListResponse> {
   const response = await fetch(getVersionEndPointUrl(endpoint), {
     next: { revalidate: 3600 },
@@ -77,7 +77,7 @@ export async function fetchAllMovieData(): Promise<MoviesData> {
     categories.map(async ({ key, endpoint }) => {
       const data = await fetchMovieData(key, endpoint);
       return { key, data };
-    })
+    }),
   );
 
   return results.reduce((acc, { key, data }) => {

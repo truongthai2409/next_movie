@@ -7,14 +7,13 @@ import { API_LIST, getApiUrl, getMovieDetailUrl } from "@/utils";
 import Image from "next/image";
 import { LoadingVideo } from "@/components";
 
-
 interface MovieDetail {
   movie: Movie;
 }
 
 const fetchMovies = async (): Promise<MovieDetail[]> => {
   const response = await fetch(
-    getApiUrl(`${API_LIST}/phim-moi-cap-nhat?page=1`)
+    getApiUrl(`${API_LIST}/phim-moi-cap-nhat?page=1`),
   );
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -25,7 +24,7 @@ const fetchMovies = async (): Promise<MovieDetail[]> => {
       const detailResponse = await fetch(getMovieDetailUrl(item.slug));
       const detailData: MovieDetail = await detailResponse.json();
       return detailData;
-    })
+    }),
   );
   return itemsData;
 };
@@ -61,7 +60,7 @@ const HeroSlider = () => {
   if (isLoading) {
     return (
       <div className="h-[600px] w-full flex items-center justify-center bg-neutral-950">
-        <LoadingVideo/>
+        <LoadingVideo />
       </div>
     );
   }

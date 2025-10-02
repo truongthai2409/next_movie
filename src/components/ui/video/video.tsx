@@ -2,17 +2,24 @@
 import React, { useState, useEffect } from "react";
 import { ListEpisode } from "@/types";
 
-const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], slug: string }) => {
+const VideoPlayerLayout = ({
+  episodesNew,
+  slug,
+}: {
+  episodesNew: ListEpisode[];
+  slug: string;
+}) => {
   // Initialize state from localStorage or default to 0
   const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedEpisodes = localStorage.getItem('watchedEpisodes');
+    if (typeof window !== "undefined") {
+      const savedEpisodes = localStorage.getItem("watchedEpisodes");
       if (savedEpisodes) {
         const episodesData = JSON.parse(savedEpisodes);
         const savedIndex = episodesData[slug];
         // Validate the saved index is within bounds
-        return savedIndex !==  undefined && savedIndex < episodesNew[0].server_data.length
-          ? savedIndex 
+        return savedIndex !== undefined &&
+          savedIndex < episodesNew[0].server_data.length
+          ? savedIndex
           : 0;
       }
     }
@@ -23,13 +30,13 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
 
   // Update localStorage when episode changes
   useEffect(() => {
-    const savedEpisodes = localStorage.getItem('watchedEpisodes');
+    const savedEpisodes = localStorage.getItem("watchedEpisodes");
     const episodesData = savedEpisodes ? JSON.parse(savedEpisodes) : {};
-    
+
     // Update episode for current slug
     episodesData[slug] = currentEpisodeIndex;
-    
-    localStorage.setItem('watchedEpisodes', JSON.stringify(episodesData));
+
+    localStorage.setItem("watchedEpisodes", JSON.stringify(episodesData));
   }, [currentEpisodeIndex, slug]);
 
   const handleEpisodeChange = async (index: number) => {
@@ -104,23 +111,27 @@ const VideoPlayerLayout = ({ episodesNew, slug }: { episodesNew: ListEpisode[], 
 
       {/* Mobile toggle button */}
       <div className="md:hidden w-full bg-gray-800 p-4 flex justify-center">
-        <button 
+        <button
           onClick={toggleEpisodeList}
           className="bg-green-600 text-white py-2 px-4 rounded"
         >
-          {showEpisodeList ? 'Hide Episodes' : 'Show Episodes'}
+          {showEpisodeList ? "Hide Episodes" : "Show Episodes"}
         </button>
       </div>
 
       {/* Episodes List - Hidden on mobile by default */}
-      <div className={`w-full md:w-80 bg-gray-800 overflow-y-auto scrool-bar ${showEpisodeList ? 'block' : 'hidden md:block'}`}>
+      <div
+        className={`w-full md:w-80 bg-gray-800 overflow-y-auto scrool-bar ${showEpisodeList ? "block" : "hidden md:block"}`}
+      >
         <div className="p-4">
           {/* Tabs */}
           <div className="flex gap-4 mb-6">
             <button className="text-green-500 border-b-2 border-green-500 pb-2">
               Chọn tập
             </button>
-            <button className="text-gray-400 border-b-2 border-gray-400 pb-2">Nội dung đặc sắc</button>
+            <button className="text-gray-400 border-b-2 border-gray-400 pb-2">
+              Nội dung đặc sắc
+            </button>
           </div>
 
           {/* Conditional Content */}

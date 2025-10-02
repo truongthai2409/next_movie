@@ -7,11 +7,15 @@ import React, { useState } from "react";
 import { useDebounce } from "@/hooks";
 import { MovieListResponse } from "@/types";
 
-const fetchSearchResults = async (keyword: string): Promise<MovieListResponse[]> => {
+const fetchSearchResults = async (
+  keyword: string,
+): Promise<MovieListResponse[]> => {
   if (!keyword) return [];
-  const response = await fetch(`https://ophim1.com/v1/api/tim-kiem?keyword=${encodeURIComponent(keyword)}`);
+  const response = await fetch(
+    `https://ophim1.com/v1/api/tim-kiem?keyword=${encodeURIComponent(keyword)}`,
+  );
   if (!response.ok) {
-    throw new Error('Network response was not ok');
+    throw new Error("Network response was not ok");
   }
   return await response.json();
 };
@@ -21,8 +25,12 @@ const SearchBox: React.FC = () => {
   const [isSearching, setIsSearching] = useState(false);
   const debouncedSearchQuery = useDebounce<string>(searchQuery, 500);
 
-  const { data: searchResults, isLoading, error } = useQuery<MovieListResponse[], Error>({
-    queryKey: ['searchResults', debouncedSearchQuery],
+  const {
+    data: searchResults,
+    isLoading,
+    error,
+  } = useQuery<MovieListResponse[], Error>({
+    queryKey: ["searchResults", debouncedSearchQuery],
     queryFn: () => fetchSearchResults(debouncedSearchQuery),
     enabled: debouncedSearchQuery.length > 2,
     staleTime: 1000 * 60 * 5, // 5 minutes

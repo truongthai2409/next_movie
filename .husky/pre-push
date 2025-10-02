@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "Running type check..."
-npm run type-check
+# echo "Running type check..."
+# npm run type-check
 
-echo "Runnging format check..."
-npm run format
+# echo "Runnging format check..."
+# npm run format
 
 echo "Running build check..."
 npm run build

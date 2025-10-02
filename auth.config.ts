@@ -5,10 +5,9 @@ import FacebookProvider from "next-auth/providers/facebook";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { adapterOptions, supabase } from "@/config";
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 
 export const authOptions: NextAuthOptions = {
-  
   adapter: SupabaseAdapter(adapterOptions),
   secret: process.env.NEXTAUTH_SECRET,
   session: {
@@ -18,8 +17,8 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
     error: "/auth/error",
-    signOut: '/auth/signout',
-    verifyRequest: '/auth/verify-request',
+    signOut: "/auth/signout",
+    verifyRequest: "/auth/verify-request",
   },
   providers: [
     CredentialsProvider({
