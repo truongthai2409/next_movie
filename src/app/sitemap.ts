@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+type SiteMapType = MetadataRoute.Sitemap | null;
+
+export default function sitemap(): SiteMapType {
+  if (process.env.DISABLE_SITEMAP === "true") {
+    return [];
+  }
   return [
     {
       url:

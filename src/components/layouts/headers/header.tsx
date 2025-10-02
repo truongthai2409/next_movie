@@ -24,18 +24,12 @@ const Header: React.FC = () => {
 
   const currentLocale = useMemo<Locale>(() => {
     const segments = pathname.split("/").filter(Boolean);
-    const loc = (segments[0] || "vi") as string;
+    const loc = segments[0] as string;
     return supportedLocales.includes(loc as Locale) ? (loc as Locale) : "vi";
   }, [pathname, supportedLocales]);
 
-  // const segments = pathname.split("/").filter(Boolean);
-  // const loc = (segments[0] || "vi") as string;
-  // const currentLocale = supportedLocales.includes(loc as Locale)
-  //   ? (loc as Locale)
-  //   : "vi";
-
   const handleLogin = () => {
-    router.push(`/auth/login?callbackUrl=${encodeURIComponent(pathname)}`);
+    router.replace(`/auth/login?callbackUrl=${encodeURIComponent(pathname)}`);
   };
 
   const handleLogout = async () => {

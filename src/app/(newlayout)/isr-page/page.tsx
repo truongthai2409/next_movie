@@ -1,8 +1,8 @@
+import Link from "next/link";
 import React from "react";
 // ISR (Incremental Static Regeneration) trong Next.js cho phép bạn cập nhật nội dung trang mà không cần phải xây dựng lại toàn bộ ứng dụng.
 
-// Định nghĩa kiểu dữ liệu cho ảnh Unsplash
-interface UnsplashImage {
+export interface UnsplashImage {
   id: string;
   urls: {
     small: string;
@@ -22,18 +22,20 @@ export const metadata = {
     "A blog page displaying images from Unsplash with ISR in Next.js",
 };
 
-// Hàm lấy danh sách ảnh random từ Unsplash
 async function getImages() {
   const res = await fetch(
     `https://api.unsplash.com/photos/random?count=12&client_id=${process.env.UNSPLASH_ACCESS_KEY}`,
     {
-      next: { revalidate: 10 }, // ISR: revalidate sau mỗi 60 giây
+      next: { revalidate: 60 },
     },
   );
+  if (!res.ok) {
+    throw new Error(`Unsplash API error: ${res.status}`);
+  }
   return res.json();
 }
 
-const BlogPage = async () => {
+export default async function BlogPage() {
   const images: UnsplashImage[] = await getImages();
 
   return (
@@ -44,11 +46,13 @@ const BlogPage = async () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {images.map((img) => (
           <div key={img.id} className="rounded overflow-hidden shadow-lg">
-            <img
-              src={img.urls.small}
-              alt={img.alt_description || "Unsplash Image"}
-              className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform hover:scale-105 border-2 border-gray-200 shadow-md hover:shadow-xl"
-            />
+            <Link href={`/isr-page/${img.id}`}>
+              <img
+                src={img.urls.small}
+                alt={img.alt_description || "Unsplash Image"}
+                className="w-full h-48 object-cover rounded-lg transition-transform duration-300 transform hover:scale-105 border-2 border-gray-200 shadow-md hover:shadow-xl"
+              />
+            </Link>
             <div className="p-4">
               <p className="text-sm text-gray-700">{img.user.name}</p>
             </div>
@@ -57,6 +61,4 @@ const BlogPage = async () => {
       </div>
     </div>
   );
-};
-
-export default BlogPage;
+}

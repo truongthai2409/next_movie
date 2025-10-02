@@ -32,6 +32,15 @@ export default function middleware(
     return NextResponse.next();
   }
 
+  if (
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/ssg-page") ||
+    pathname.startsWith("/isr-page") ||
+    pathname.startsWith("/auth/login")
+  ) {
+    return NextResponse.next();
+  }
+
   // Do not locale-redirect auth pages to avoid conflicts
   const isAuthRoute = /\/auth(\/.*)?$/.test(
     pathname.replace(/^\/[a-z]{2}/, ""),
@@ -72,5 +81,6 @@ export default function middleware(
 }
 
 export const config = {
-  matcher: ["/:path*"],
+  // matcher: ["/:path*"],
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
