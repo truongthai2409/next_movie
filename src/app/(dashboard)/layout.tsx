@@ -11,6 +11,7 @@ import {
   Bell,
   Search,
 } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 
 export default function DashboardLayout({
   children,
@@ -38,48 +39,48 @@ export default function DashboardLayout({
 
           {/* Navigation */}
           <nav className="flex-1 p-4 space-y-2">
-            <a
+            <Link
               href="/dashboard"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg bg-purple-600/20 text-purple-300 border border-purple-500/30 transition-all hover:bg-purple-600/30"
             >
               <Home className="w-5 h-5" />
               <span className="font-medium">Dashboard</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 transition-all"
             >
               <BarChart3 className="w-5 h-5" />
               <span>Analytics</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 transition-all"
             >
               <Film className="w-5 h-5" />
               <span>Movies</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 transition-all"
             >
               <Users className="w-5 h-5" />
               <span>Users</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 transition-all"
             >
               <Star className="w-5 h-5" />
               <span>Reviews</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center space-x-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 transition-all"
             >
               <Settings className="w-5 h-5" />
               <span>Settings</span>
-            </a>
+            </Link>
           </nav>
 
           {/* Team Section */}

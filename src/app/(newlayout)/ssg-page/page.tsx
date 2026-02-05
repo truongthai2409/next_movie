@@ -1,7 +1,6 @@
-// app/ssg-example/page.tsx
+export const dynamic = "force-static"; // ép SSG
 
-export const dynamic = "force-static"; // 💡 Bắt buộc Next.js generate statically
-type UnsplashPhoto = {
+export type UnsplashPhoto = {
   id: string;
   alt_description: string | null;
   urls: {
@@ -17,7 +16,8 @@ async function fetchUnsplashPhotos(): Promise<UnsplashPhoto[]> {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   const res = await fetch(
     `https://api.unsplash.com/photos?per_page=10&client_id=${accessKey}`,
-    { next: { revalidate: 3600 } },
+    // { next: { revalidate: 3600 } },
+    // { cache: 'force-cache' | 'no-store' }
   );
   if (!res.ok) throw new Error("Failed to fetch Unsplash photos");
   const data = await res.json();

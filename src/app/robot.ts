@@ -1,4 +1,5 @@
 // app/robots.ts
+import { HOST_PRODUCTION } from "@/utils";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -8,9 +9,9 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/private/", "/api/", "/auth/", "/watch/", "/admin/"],
     },
-    host: process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT,
+    host: HOST_PRODUCTION,
     sitemap:
-      `${process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT}/sitemap.xml` ||
+      `${HOST_PRODUCTION}/sitemap.xml` ||
       "https://next-imovie.vercel.app/sitemap.xml",
   };
 }

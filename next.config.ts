@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
   },
   productionBrowserSourceMaps: false,
+  // output: "export",
+  cacheComponents: true,
+  experimental: {
+    useCache: true,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
