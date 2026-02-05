@@ -1,10 +1,10 @@
+import { getMovieMetadata } from "@/services/movie.service";
 import { Params } from "@/types";
-import { fetchMovieDetails } from "..";
 const NEXT_PRODUCTION = process.env.NEXT_PRODUCTION === "true";
 
 export async function generateMetadata({ params }: { params: Params }) {
-  const movieDetails = await fetchMovieDetails((await params).slug);
-  // console.log(movieDetails)
+  const movieDetails = await getMovieMetadata((await params).slug);
+
   return {
     title: movieDetails.data.seoOnPage.titleHead,
     description: movieDetails.data.seoOnPage.descriptionHead,

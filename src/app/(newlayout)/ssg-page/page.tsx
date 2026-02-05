@@ -1,6 +1,6 @@
 export const dynamic = "force-static"; // ép SSG
 
-type UnsplashPhoto = {
+export type UnsplashPhoto = {
   id: string;
   alt_description: string | null;
   urls: {

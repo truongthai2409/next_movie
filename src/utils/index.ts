@@ -1,9 +1,10 @@
 import { Movie, MovieDetail, MovieListResponse, MoviesData } from "@/types";
 
 export const BASEURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-export const MOVIE_END_POINT = process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT;
-export const API_LIST = process.env.NEXT_PUBLIC_API_LIST;
-export const VERSION_END_POINT = process.env.NEXT_PUBLIC_API_VERSION_ENDPOINT;
+export const HOST_PRODUCTION = process.env.NEXT_PRODUCTION;
+export const API_LIST = "danh-sach";
+export const MOVIE_END_POINT = "phim";
+export const VERSION_END_POINT = "v1/api";
 
 // get endpoint
 export const getApiUrl = (endpoint: string) => {

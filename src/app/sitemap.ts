@@ -1,3 +1,4 @@
+import { HOST_PRODUCTION } from "@/utils";
 import type { MetadataRoute } from "next";
 
 type SiteMapType = MetadataRoute.Sitemap | null;
@@ -6,27 +7,24 @@ export default function sitemap(): SiteMapType {
   if (process.env.DISABLE_SITEMAP === "true") {
     return [];
   }
+  const NEW_END_POINT =
+    HOST_PRODUCTION || ("https://next-imovie.vercel.app" as string);
+
   return [
     {
-      url:
-        process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT ||
-        "https://next-imovie.vercel.app",
+      url: NEW_END_POINT,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 1,
     },
     {
-      url:
-        process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT ||
-        "https://next-imovie.vercel.app",
+      url: NEW_END_POINT,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url:
-        process.env.NEXT_PUBLIC_API_MOVIE_ENDPOINT ||
-        "https://next-imovie.vercel.app",
+      url: NEW_END_POINT,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.5,

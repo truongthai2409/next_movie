@@ -22,7 +22,6 @@ export default function CommentSection({ slug }: Props) {
   const [newComment, setNewComment] = useState("");
   // console.log(session)
   const handleSubmit = async () => {
-    console.log(comments);
     if (!newComment.trim()) return;
 
     try {

@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   },
   productionBrowserSourceMaps: false,
   // output: "export",
+  cacheComponents: true,
+  experimental: {
+    useCache: true,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
